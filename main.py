@@ -30,17 +30,7 @@ for file in glob.glob("*.csv"):
             pass
     with open('cleaned/{}'.format(file), 'w+') as filw:
         filw.writelines('%s\n' % l for l in new_lines)
-    # fig,(ax1,ax2)=plt.subplots(2)
-    # fig.suptitle(file)
-    # plt.subplots_adjust(hspace=.3)
-    # plt.subplots_adjust(top=0.85)
-    # ax1.scatter(time,force,label='Force over time')
-    # ax1.set_xlabel('time (s)')
-    # ax1.set_ylabel('force (kg)')
-    # ax2.scatter(strain,force,c='red',label='Force over strain')
-    # ax2.set_xlabel('strain')
-    # ax2.set_ylabel('force (kg)')
-    # plt.show()
+    # if you want 3d plot
     # fig = plt.figure()
     # fig.suptitle(file)
     # ax=fig.add_subplot(111,projection='3d')
