@@ -34,25 +34,6 @@ for file in glob.glob("*.csv"):
                     new_lines.append(l)
             except:
                 pass
-        # fig,(ax1,ax2)=plt.subplots(2)
-        # fig.suptitle(file)
-        # plt.subplots_adjust(hspace=.3)
-        # plt.subplots_adjust(top=0.85)
-        # ax1.scatter(time,force,label='Force over time')
-        # ax1.set_xlabel('time (s)')
-        # ax1.set_ylabel('force (kg)')
-        # ax2.scatter(strain,force,c='red',label='Force over strain')
-        # ax2.set_xlabel('strain')
-        # ax2.set_ylabel('force (kg)')
-        # plt.show()
-        # fig = plt.figure()
-        # fig.suptitle(file)
-        # ax=fig.add_subplot(111,projection='3d')
-        # ax.scatter(time,force,strain,marker='o')
-        # ax.set_xlabel('time (s)')
-        # ax.set_ylabel('force (kg)')
-        # ax.set_zlabel('strain')
-        # plt.show()
         if 'damaged' in file and not 'undamaged' in file:
             stress = [3*(f*9.81)*0.16/(2*0.015*pow(0.003,2)*pow(10,6)) for f in force]
         else:
