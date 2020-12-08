@@ -65,3 +65,5 @@ for file in glob.glob("*.csv"):
     ax2.set_ylabel('stress (MPa)')
     # plt.show()
     plt.savefig('graphs/{}.png'.format(file.replace('.csv','')))
+    print(file)
+    print(max(stress))
