@@ -1,3 +1,6 @@
 data/*
 venv/*
+env/*
 .idea/*
+cleaned/*
+graphs/*
