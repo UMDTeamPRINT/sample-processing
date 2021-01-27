@@ -7,7 +7,7 @@ count = 0
 cols = ['red','green','blue','black']
 marker=['x','o','H','+']
 for file in glob.glob("*.csv"):
-    if 'repair' in file:
+    if 'R' in file:
         with open(file) as f:
             lines = f.readlines()
         new_lines = []
@@ -43,5 +43,6 @@ for file in glob.glob("*.csv"):
         ax2.set_xlabel('strain')
         ax2.set_ylabel('stress (MPa)')
         count+=1
-plt.legend()
-plt.show()
+        #plt.legend()
+        #plt.show()
+        plt.savefig('../graphs/aggregate.png')
