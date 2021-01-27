@@ -1,3 +1,4 @@
+#!./env/bin/python
 import glob, os
 import matplotlib.pyplot as plt
 os.chdir("./data")
@@ -28,7 +29,7 @@ for file in glob.glob("*.csv"):
             new_lines.append(l)
         except:
             pass
-    with open('cleaned/{}'.format(file), 'w+') as filw:
+    with open("../cleaned/{}".format(file), 'w+') as filw:
         filw.writelines('%s\n' % l for l in new_lines)
     # if you want 3d plot
     # fig = plt.figure()
@@ -54,6 +55,6 @@ for file in glob.glob("*.csv"):
     ax2.set_xlabel('strain')
     ax2.set_ylabel('stress (MPa)')
     # plt.show()
-    plt.savefig('graphs/{}.png'.format(file.replace('.csv','')))
+    plt.savefig('../graphs/{}.png'.format(file.replace('.csv','')))
     print(file)
     print(max(stress))

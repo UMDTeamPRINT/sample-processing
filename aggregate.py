@@ -1,3 +1,4 @@
+#!./env/bin/python
 import glob, os
 import matplotlib.pyplot as plt
 os.chdir("./data")
