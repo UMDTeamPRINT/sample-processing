@@ -38,10 +38,30 @@ for file in glob.glob("*.csv"):
                 new_lines.append(l)
         except:
             pass
-    if 'damaged' in file and not 'undamaged' in file:
-        stress = [3*(f*9.81)*0.16/(2*0.015*pow(0.003,2)*pow(10,6)) for f in force]
+
+    if 'T1D' in file:
+        stress = [
+            3 * (f * 9.81) * 0.16 / (2 * 0.015 * pow(0.003, 2) * pow(10, 6))
+            for f in force
+        ]
+    elif 'Al' in file:
+        stress = [
+            3 * (f * 9.81) * 0.14 / (2 * .009525 * pow(0.009525, 2) * pow(10, 6))
+            for f in force
+        ]
+    elif 'T4D' in file:
+        stress = [
+            (0.25 * f * 9.81 * 0.16 * 0.00385) / (0.075 * pow(10, -8) * pow(10, 6))
+            for f in force
+        ]
+    elif 'U' in file or 'R' in file:  # undamaged
+        stress = [
+            3 * (f * 9.81) * 0.16 / (2 * 0.015 * pow(0.01, 2) * pow(10, 6))
+            for f in force
+        ]
     else:
-        stress = [3*(f*9.81)*0.16/(2*0.015*pow(0.01,2)*pow(10,6)) for f in force]
+        raise Exception
+
 
     max_stress[file]=(max(stress))
     if 'U' in file and not 'U9' in file:

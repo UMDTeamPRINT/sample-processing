@@ -33,6 +33,7 @@ for file in glob.glob("*.csv"):
         l = l.replace('-', '')
         ll = l.split(',')
         try:
+            # if 7.4<float(ll[0])<8.9:
             float(ll[0]) + float(ll[1]) + float(ll[2])
             time.append(float(ll[0]))
             force.append(float(ll[1]))
@@ -64,9 +65,19 @@ for file in glob.glob("*.csv"):
     plt.subplots_adjust(hspace=.3)
     plt.subplots_adjust(top=0.85)
 
-    if 'D' in file:
+    if 'T1D' in file:
         stress = [
             3 * (f * 9.81) * 0.16 / (2 * 0.015 * pow(0.003, 2) * pow(10, 6))
+            for f in force
+        ]
+    elif 'T4D' in file:
+        stress = [
+            (0.25 * f * 9.81 * 0.16 * 0.00385) / (0.075 * pow(10, -8) * pow(10, 6))
+            for f in force
+        ]
+    elif 'Al' in file:
+        stress = [
+            3 * (f * 9.81) * 0.14/(2*.009525*pow(0.009525,2)*pow(10,6))
             for f in force
         ]
     else:
@@ -74,9 +85,23 @@ for file in glob.glob("*.csv"):
             3 * (f * 9.81) * 0.16 / (2 * 0.015 * pow(0.01, 2) * pow(10, 6))
             for f in force
         ]
-    ax1.plot(time, stress, label='Force over time')
+    ax1.scatter(time, force, label='Force over time')
+    # ax1.scatter(time,strain,label='stress over time')
     ax1.set_xlabel('time (s)')
     ax1.set_ylabel('stress (MPa)')
+
+    # coef_undamaged, residuals_undamged, _, _, _ = np.polyfit(strain,
+    #                                                          stress,
+    #                                                          1,
+    #                                                          full=True)
+    # undamaged_fn = np.poly1d(coef_undamaged)
+    # ax2.plot(strain,
+    #          undamaged_fn(strain),
+    #          '--b',
+    #          label='Undamaged (E={:.0f}MPa, chi^2={:.3f})'.format(
+    #              coef_undamaged[0],
+    #              residuals_undamged[0] / len(strain)))
+    # plt.legend()
     ax2.scatter(strain, stress, c='red', label='Force over strain')
     ax2.set_xlabel('strain')
     ax2.set_ylabel('stress (MPa)')
